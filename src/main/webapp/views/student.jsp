@@ -35,7 +35,7 @@
                     <td>${student.studentId}</td>
                     <td>${student.studentName}</td>
                     <td>${student.phoneNumber}</td>
-                    <td>${student.birthday}</td>
+                    <td><fmt:formatDate pattern="dd/MM/yyyy" value="${student.birthday}"/></td>
                     <td>${student.address}</td>
                     <td><img src="${student.imageUrl}" height="50" width="50" alt="${student.studentName}"></td>
                     <td>${student.sex?"Male":"Female"}</td>

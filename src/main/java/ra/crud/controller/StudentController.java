@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ra.crud.dto.request.StudentDTO;
 import ra.crud.model.Student;
 import ra.crud.service.StudentService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -33,16 +32,41 @@ public class StudentController {
     }
 
     @PostMapping("/create")
-    public String initCreate(StudentDTO studentDTO, BindingResult bindingResult){
+    public String create(StudentDTO studentDTO){
         boolean result = studentService.create(studentDTO);
-        if(bindingResult.hasErrors()){
-            return "createStudent";
-        }
         if(result){
             return "redirect:findAll";
         }
         return "error";
     }
 
+    @GetMapping("/initUpdate")
+    public String initUpdate(@RequestParam int id, Model model){
+        Student student = studentService.findById(id);
+        model.addAttribute("studentUpdateDTO", StudentDTO.builder()
+                .studentName(student.getStudentName())
+                .address(student.getAddress())
+                .sex(student.isSex())
+                .birthday(student.getBirthday())
+                .phoneNumber(student.getPhoneNumber()).build());
+        return "studentUpdate";
+    }
 
+    @PostMapping("/update")
+    public String update(StudentDTO studentUpdate){
+       boolean result = studentService.update(studentUpdate);
+        if(result){
+            return "redirect:findAll";
+        }
+        return "error";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam int id){
+        boolean result = studentService.delete(id);
+        if(result){
+            return "redirect:findAll";
+        }
+        return "error";
+    }
 }

@@ -22,7 +22,7 @@ public class Student {
     private String studentName;
     @Column(name = "phone_number", columnDefinition = "varchar(15)")
     private String phoneNumber;
-    @Column(name = "birthday", columnDefinition = "date")
+    @Column(name = "birthday",columnDefinition = "datetime")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     @Column(name = "address", columnDefinition = "varchar(255)")
