@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: HongPinky
@@ -14,6 +15,10 @@
 </head>
 <body>
     <h1>Student Management</h1>
+    <form:form action="${pageContext.request.contextPath}/studentController/search" method="get">
+        <input type="text" name="searchByName" placeholder="Enter student name....">
+        <input type="submit" value="Search">
+    </form:form>
     <table border="1">
         <thead>
             <tr>

@@ -70,4 +70,10 @@ public class StudentController {
         }
         return "error";
     }
+
+    @GetMapping("/search")
+    public String search(@ModelAttribute("searchByName") String name, Model model) {
+        model.addAttribute("studentList", studentService.findByName(name));
+        return "student";
+    }
 }
