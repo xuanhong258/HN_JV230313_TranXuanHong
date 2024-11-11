@@ -2,6 +2,7 @@ package ra.crud.dto.request;
 
 import lombok.*;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
@@ -17,6 +18,7 @@ public class StudentDTO {
     @NotBlank(message = "Name cannot be blank")
     private String studentName;
     private String phoneNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     private String address;
     private MultipartFile imageUrl;
