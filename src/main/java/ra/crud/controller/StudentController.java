@@ -41,9 +41,10 @@ public class StudentController {
     }
 
     @GetMapping("/initUpdate")
-    public String initUpdate(@RequestParam int id, Model model){
+    public String initUpdate(@RequestParam("id") int id, Model model){
         Student student = studentService.findById(id);
         model.addAttribute("studentUpdateDTO", StudentDTO.builder()
+                .studentId(id)
                 .studentName(student.getStudentName())
                 .address(student.getAddress())
                 .sex(student.isSex())
@@ -53,7 +54,7 @@ public class StudentController {
     }
 
     @PostMapping("/update")
-    public String update(StudentDTO studentUpdate){
+    public String update(@ModelAttribute("studentUpdateDTO") StudentDTO studentUpdate){
        boolean result = studentService.update(studentUpdate);
         if(result){
             return "redirect:findAll";
@@ -62,7 +63,7 @@ public class StudentController {
     }
 
     @GetMapping("/delete")
-    public String delete(@RequestParam int id){
+    public String delete(@RequestParam("id") int id){
         boolean result = studentService.delete(id);
         if(result){
             return "redirect:findAll";

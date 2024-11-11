@@ -13,6 +13,8 @@
 </head>
 <body>
 <form:form modelAttribute="studentUpdateDTO" action="${pageContext.request.contextPath}/studentController/update" method="post" enctype="multipart/form-data">
+    <form:label path="studentId" for="studentId">Student Id</form:label>
+    <form:input path="studentId" id="studentId" readonly=""/><br>
 
     <form:label path="studentName" for="studentName">Student Name</form:label>
     <form:input path="studentName" id="studentName"/>

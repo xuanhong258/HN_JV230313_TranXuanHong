@@ -14,6 +14,7 @@ import java.util.Date;
 @Getter
 @Builder
 public class StudentDTO {
+    private int studentId;
     @NotNull(message = "Name cannot be null")
     @NotBlank(message = "Name cannot be blank")
     private String studentName;

@@ -44,6 +44,7 @@ public class StudentServiceImp implements StudentService {
     public boolean update(StudentDTO studentDTO) {
         String imageUrl = uploadFileService.uploadFileToLocal(studentDTO.getImageUrl());
         Student student = new Student().builder()
+                .studentId(studentDTO.getStudentId())
                 .studentName(studentDTO.getStudentName())
                 .phoneNumber(studentDTO.getPhoneNumber())
                 .imageUrl(imageUrl)
